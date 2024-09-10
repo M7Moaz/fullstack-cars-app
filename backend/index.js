@@ -426,6 +426,6 @@ const logout = async (req, res) => {
 };
 app.post("/logout", logout);
 
-app.listen(4000, () => {
-  console.log("Server is running on port 4000");
+app.listen(process.env.PORT, () => {
+  console.log("Server is running on port 10000");
 });
