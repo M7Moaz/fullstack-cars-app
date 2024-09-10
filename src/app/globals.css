@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slider {
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  padding: 10px 0;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(255, 255, 255, 0.997);
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 30, 255, 0.189);
+}
+
+.no-spinner {
+  @apply appearance-none;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
