@@ -5,7 +5,7 @@ export async function middleware(req: any) {
   const url = req.nextUrl.clone();
 
   const checkToken = async () => {
-    const res = await fetch("http://localhost:4000/checkAuth", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkAuth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
