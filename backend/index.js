@@ -13,7 +13,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
     credentials: true,
   })
 );
@@ -427,5 +427,5 @@ const logout = async (req, res) => {
 app.post("/logout", logout);
 
 app.listen(process.env.PORT, () => {
-  console.log("Server is running on port 10000");
+  console.log("Server is running on port 4000");
 });
