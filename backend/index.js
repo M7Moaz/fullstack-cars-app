@@ -412,7 +412,7 @@ const validateLogin = async (req, res) => {
 
     res.setHeader(
       "Set-Cookie",
-      `token=${token}; HttpOnly; Path=/; Max-Age=1800; SameSite=Strict; Secure`
+      `token=${token}; HttpOnly; Path=/; Max-Age=1800; SameSite=None; Secure`
     );
 
     return res.status(200).json({ status: 200, message: "Success" });
