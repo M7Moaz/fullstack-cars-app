@@ -1,21 +1,37 @@
 "use client";
-import { validateLogin } from "@/utils/fetchData";
+import { checkToken, validateLogin } from "@/utils/fetchData";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const router = useRouter();
   const [password, setPassword] = useState(true);
   const [userData, setUserData] = useState({});
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const main = async () => {
+      if (token) {
+        const val = await checkToken(token);
+
+        if (val.status === 200) {
+          router.push("/dashboard");
+        }
+      }
+    };
+
+    main();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await validateLogin(userData);
     if (res.status === 200) {
+      localStorage.setItem("token", res.token);
       router.push("/dashboard");
-      // window.location.reload();
+      window.location.reload();
     } else {
       alert(`${res.message}`);
     }

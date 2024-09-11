@@ -9,12 +9,11 @@ const Users = require("./models/Users");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const app = express();
-app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
     origin: "https://fullstack-cars-app.vercel.app",
-    credentials: true,
+    // origin: "http://localhost:3000",
   })
 );
 const multer = require("multer");
@@ -363,9 +362,7 @@ const addBrand = async (req, res) => {
 app.post("/addBrand", uploadLogic, addBrand);
 
 const addUser = async (req, res) => {
-  // const { email, password } = req.body;
   try {
-    console.log(req.body);
     const user = await Users(req.body);
 
     await user.save();
@@ -392,13 +389,6 @@ const checkAuth = async (req, res, next) => {
 app.post("/checkAuth", checkAuth);
 
 const validateLogin = async (req, res) => {
-  // Changes Made
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://fullstack-cars-app.vercel.app/"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
   const { email, password } = req.body;
   try {
     const user = await Users.findOne({ email: email });
@@ -415,25 +405,12 @@ const validateLogin = async (req, res) => {
       expiresIn: "30m",
     });
 
-    // Changes made here
-
-    res.setHeader(
-      "Set-Cookie",
-      `token=${token}; HttpOnly; Path=/; Max-Age=1800; SameSite=None; Secure`
-    );
-
-    return res.status(200).json({ status: 200, message: "Success" });
+    return res.status(200).json({ status: 200, token: token });
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
 };
 app.post("/validateLogin", validateLogin);
-
-const logout = async (req, res) => {
-  res.clearCookie("token", { path: "/" });
-  res.status(200).json({ status: 200, message: "Logged Out" });
-};
-app.post("/logout", logout);
 
 app.listen(process.env.PORT, () => {
   console.log("Server is running on port 4000");

@@ -195,7 +195,6 @@ export const validateLogin = async (user: any) => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
     body: JSON.stringify(user),
   });
 
@@ -215,13 +214,16 @@ export const addCar = async (carData: any) => {
   return added;
 };
 
-export const logout = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
+export const checkToken = async (token: string) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkAuth`, {
     method: "POST",
-    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
 
-  const logged = await res.json();
+  const result = await res.json();
 
-  return logged;
+  return result;
 };

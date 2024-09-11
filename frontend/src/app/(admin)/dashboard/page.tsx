@@ -1,4 +1,4 @@
-const page = (context: any) => {
+const page = () => {
   return (
     <div>
       <h2>Dashboard</h2>

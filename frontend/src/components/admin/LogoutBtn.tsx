@@ -1,13 +1,12 @@
 "use client";
 
-import { logout } from "@/utils/fetchData";
 import { LogoutIcon } from "./Icons";
 import { useRouter } from "next/navigation";
 
 const LogoutBtn = () => {
   const router = useRouter();
   const handleLogout = async () => {
-    const log = await logout();
+    localStorage.removeItem("token");
 
     router.push("/login");
   };

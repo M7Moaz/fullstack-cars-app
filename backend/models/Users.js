@@ -10,6 +10,9 @@ const userSchema = new db.Schema({
     type: String,
     required: true,
   },
+  token: {
+    type: String,
+  },
   role: {
     type: String,
     enum: ["ADMIN", "USER"],
