@@ -392,6 +392,13 @@ const checkAuth = async (req, res, next) => {
 app.post("/checkAuth", checkAuth);
 
 const validateLogin = async (req, res) => {
+  // Changes Made
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://fullstack-cars-app.vercel.app/"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
   const { email, password } = req.body;
   try {
     const user = await Users.findOne({ email: email });
