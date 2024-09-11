@@ -14,8 +14,8 @@ const Login = () => {
     e.preventDefault();
     const res = await validateLogin(userData);
     if (res.status === 200) {
-      window.location.reload();
-      return router.push("/dashboard");
+      router.push("/dashboard");
+      // window.location.reload();
     } else {
       alert(`${res.message}`);
     }
