@@ -195,6 +195,7 @@ export const validateLogin = async (user: any) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(user),
   });
 
@@ -221,6 +222,7 @@ export const checkToken = async (token: string) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+    credentials: "include",
   });
 
   const result = await res.json();

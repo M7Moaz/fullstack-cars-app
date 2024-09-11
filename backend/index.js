@@ -14,6 +14,7 @@ app.use(
   cors({
     origin: "https://fullstack-cars-app.vercel.app",
     // origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 const multer = require("multer");
