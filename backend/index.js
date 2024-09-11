@@ -408,9 +408,11 @@ const validateLogin = async (req, res) => {
       expiresIn: "30m",
     });
 
+    // Changes made here
+
     res.setHeader(
       "Set-Cookie",
-      `token=${token}; HttpOnly; Path=/; Max-Age=1800; SameSite=Strict`
+      `token=${token}; HttpOnly; Path=/; Max-Age=1800; SameSite=Strict; Secure`
     );
 
     return res.status(200).json({ status: 200, message: "Success" });
